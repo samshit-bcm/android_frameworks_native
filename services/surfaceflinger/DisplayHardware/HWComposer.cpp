@@ -1209,8 +1209,9 @@ void HWComposer::dump(String8& result, char* buffer, size_t SIZE) const {
                         "    type    |  handle  |   hints  |   flags  | tr | blend |  format  |       source crop         |           frame           name \n"
                         "------------+----------+----------+----------+----+-------+----------+---------------------------+--------------------------------\n");
                 //      " __________ | ________ | ________ | ________ | __ | _____ | ________ | [_____,_____,_____,_____] | [_____,_____,_____,_____]
-                for (size_t i=0 ; i<disp.list->numHwLayers ; i++) {
-                    const hwc_layer_1_t&l = disp.list->hwLayers[i];
+                hwc_layer_list_t* list0 = reinterpret_cast<hwc_layer_list_t*>(disp.list);
+                for (size_t i=0 ; i<hwcNumHwLayers(mHwc, disp.list) ; i++) {
+                    const hwc_layer_t&l = list0->hwLayers[i];
                     int32_t format = -1;
                     String8 name("unknown");
 
