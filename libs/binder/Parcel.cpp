@@ -797,6 +797,12 @@ status_t Parcel::writeBlob(size_t len, WritableBlob* outBlob)
     return status;
 }
 
+extern "C" status_t _ZN7android6Parcel5writeERKNS0_26FlattenableHelperInterfaceE(void *parcel, void *val);
+
+extern "C" status_t _ZN7android6Parcel5writeERKNS_11FlattenableE(void *parcel, void *val) {
+    return _ZN7android6Parcel5writeERKNS0_26FlattenableHelperInterfaceE(parcel, val);
+}
+
 status_t Parcel::write(const Flattenable& val)
 {
     status_t err;
@@ -1171,6 +1177,12 @@ status_t Parcel::readBlob(size_t len, ReadableBlob* outBlob) const
 
     outBlob->init(true /*mapped*/, ptr, len);
     return NO_ERROR;
+}
+
+extern "C" status_t _ZNK7android6Parcel4readERNS0_26FlattenableHelperInterfaceE(void *parcel, void *val);
+
+extern "C" status_t _ZNK7android6Parcel4readERNS_11FlattenableE(void *parcel, void *val) {
+    return _ZNK7android6Parcel4readERNS0_26FlattenableHelperInterfaceE(parcel, val);
 }
 
 status_t Parcel::read(Flattenable& val) const

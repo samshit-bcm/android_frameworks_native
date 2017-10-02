@@ -1202,7 +1202,7 @@ uint32_t Layer::getEffectiveUsage(uint32_t usage) const
 void Layer::updateTransformHint(const sp<const DisplayDevice>& hw) const {
     uint32_t orientation = 0;
 // XXX: disable HWC in landscape mode until we can upgrade to 4.1 hwc
-#ifndef SAMSUNG_BCM_AUDIO_BLOB
+#ifndef CAPRI_HWC
     if (!mFlinger->mDebugDisableTransformHint) {
         // The transform hint is used to improve performance, but we can
         // only have a single transform hint, it cannot
